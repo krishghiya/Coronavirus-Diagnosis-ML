@@ -1,0 +1,116 @@
+.formContainer {
+  height: 90vh;
+  width: 100vw;
+  z-index: 4;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: relative;
+}
+.formmm {
+  width: 27vw;
+  padding: 2vw;
+  text-align: center;
+  border-radius: 3em;
+  background-color: rgba(255, 255, 255, 0.836);
+  box-shadow: 0 0 5px hsl(0, 0%, 50%);
+}
+.cover1 {
+  top: 0;
+  left: 0;
+  z-index: -2;
+  width: 100vw;
+  height: 90vh;
+  position: absolute;
+}
+.formHeading {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+}
+.formButton {
+  color: white;
+  border-radius: 5em;
+  width: 24.5vw;
+  margin-left: -1vw;
+  border: none;
+  font-size: 1.5em;
+  padding: 0.5em 0;
+  background-color: rgb(0, 153, 0);
+}
+.formButtonView {
+}
+.sideButton {
+  background-color: white;
+  width: 30vw;
+  border: none;
+  box-shadow: 0 0 10px gray;
+  border-radius: 0.2em;
+  padding: 0.5em 0;
+  font-size: 2em;
+}
+
+/* /////////////////////////////// */
+
+.modaldiv {
+  padding: 3em 0;
+  text-align: center;
+}
+.modaldivRow {
+  display: flex;
+  margin-top: 2em;
+  margin-left: 6vw;
+  width: 41vw;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.modalDivButton {
+  width: 20vw;
+  margin: 0.5em;
+  border-radius: 0.1em;
+  border: none;
+  color: white;
+  flex-direction: row;
+  display: flex;
+  padding: 0.5em 1em;
+  background-color: rgb(0, 143, 238);
+}
+.footerButton {
+  border: none;
+  color: white;
+  border-radius: 0.3em;
+  padding: 0.6em 2em;
+  background-color: black;
+}
+.modalFootRow {
+  display: flex;
+  margin-top: 1em;
+  flex-direction: row;
+  width: 41vw;
+  margin-left: 6vw;
+  justify-content: space-between;
+}
+.modalFooterRow {
+  background-color: rgb(0, 143, 238);
+  display: flex;
+  margin-top: 2em;
+  flex-direction: row;
+  width: 41vw;
+  margin-left: 6vw;
+  padding: 0.3em 10vw;
+  align-items: center;
+  justify-content: space-around;
+}
+.modalFooterspan {
+  cursor: pointer;
+  color: white;
+}
+.modalFooterspanActive {
+  color: white;
+  cursor: pointer;
+  border-radius: 1em;
+  background-color: rgb(0, 127, 212);
+}
+.inputDate{
+  width: 41vw;
+}
