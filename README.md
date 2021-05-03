@@ -8,7 +8,8 @@ To run website enter the following commands in terminal while in the project fol
 `npm start`</br>
 
 To run server enter the following commands in terminal while in the project folder</br>
-Flask can be installed with `pip install flask`</br>
 </br>
+`pip install flask`</br>
+`pip install flask-cors`</br>
 `cd server`</br>
 `flask run`</br>
