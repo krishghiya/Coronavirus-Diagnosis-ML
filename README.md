@@ -5,10 +5,8 @@ To run website enter the following commands in terminal while in the project fol
 </br>
 `cd client`</br>
 `npm i`</br>
-`cd server`</br>
 `npm start`</br>
 
-</br>
 To run server enter the following commands in terminal while in the project folder</br>
 Flask can be installed with `pip install flask`</br>
 </br>
