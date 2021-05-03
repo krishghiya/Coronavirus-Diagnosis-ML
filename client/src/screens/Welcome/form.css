@@ -9,12 +9,15 @@
   position: relative;
 }
 .formmm {
-  width: 27vw;
-  padding: 2vw;
+  width: 30vw;
+  padding: 1vw;
   text-align: center;
   border-radius: 3em;
   background-color: rgba(255, 255, 255, 0.836);
   box-shadow: 0 0 5px hsl(0, 0%, 50%);
+}
+.formmm p {
+  font-size: 1.2vw;
 }
 .cover1 {
   top: 0;
@@ -31,8 +34,7 @@
 .formButton {
   color: white;
   border-radius: 5em;
-  width: 24.5vw;
-  margin-left: -1vw;
+  width: 28vw;
   border: none;
   font-size: 1.5em;
   padding: 0.5em 0;
@@ -53,50 +55,50 @@
 /* /////////////////////////////// */
 
 .modaldiv {
+  display: flex;
   padding: 3em 0;
   text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 .modaldivRow {
+  width: 41vw;
   display: flex;
   margin-top: 2em;
-  margin-left: 6vw;
-  width: 41vw;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 .modalDivButton {
   width: 20vw;
-  margin: 0.5em;
-  border-radius: 0.1em;
   border: none;
   color: white;
-  flex-direction: row;
   display: flex;
   padding: 0.5em 1em;
+  flex-direction: row;
+  border-radius: 0.1em;
   background-color: rgb(0, 143, 238);
 }
 .footerButton {
   border: none;
   color: white;
-  border-radius: 0.3em;
   padding: 0.6em 2em;
+  border-radius: 0.3em;
   background-color: black;
 }
 .modalFootRow {
   display: flex;
+  width: 41vw;
   margin-top: 1em;
   flex-direction: row;
-  width: 41vw;
-  margin-left: 6vw;
   justify-content: space-between;
 }
 .modalFooterRow {
   background-color: rgb(0, 143, 238);
   display: flex;
-  margin-top: 2em;
+  margin-top: 1em;
   flex-direction: row;
   width: 41vw;
-  margin-left: 6vw;
   padding: 0.3em 10vw;
   align-items: center;
   justify-content: space-around;
@@ -111,6 +113,71 @@
   border-radius: 1em;
   background-color: rgb(0, 127, 212);
 }
-.inputDate{
+.inputDate {
   width: 41vw;
+}
+@media screen and (max-width: 580px) {
+  
+.modaldiv {
+  display: flex;
+  padding: 3vw 0;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.modaldivRow {
+  width: 90vw;
+  display: flex;
+  margin-top: 2em;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.modalDivButton {
+  width: 40vw;
+  border: none;
+  color: white;
+  display: flex;
+  padding: 0.5em 1em;
+  flex-direction: row;
+  border-radius: 0.1em;
+  background-color: rgb(0, 143, 238);
+}
+.footerButton {
+  border: none;
+  color: white;
+  padding: 0.6em 2em;
+  border-radius: 0.3em;
+  background-color: black;
+}
+.modalFootRow {
+  display: flex;
+  width: 90vw;
+  margin-top: 1em;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.modalFooterRow {
+  background-color: rgb(0, 143, 238);
+  display: flex;
+  margin-top: 1em;
+  flex-direction: row;
+  width: 90vw;
+  padding: 0.3em 10vw;
+  align-items: center;
+  justify-content: space-around;
+}
+.modalFooterspan {
+  cursor: pointer;
+  color: white;
+}
+.modalFooterspanActive {
+  color: white;
+  cursor: pointer;
+  border-radius: 1em;
+  background-color: rgb(0, 127, 212);
+}
+.inputDate {
+  width: 90vw;
+}
 }

@@ -9,8 +9,8 @@ cors = CORS(app)
 @app.route('/data', methods=['POST'])
 def make_prediction():
     data = request.get_json()
-    if request.method != 'POST' or not data:
-        return "Must be a POST request and contain body"
+    if not data:
+        return "Must contain body"
     
     return {'prediction': 'likely',
             'confidence': 100}
