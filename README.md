@@ -13,3 +13,4 @@ Flask can be installed with `pip install flask`</br>
 </br>
 `cd server`</br>
 `flask run`</br>
+`npm start`</br>
