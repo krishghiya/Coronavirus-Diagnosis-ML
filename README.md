@@ -11,5 +11,6 @@ To run server enter the following commands in terminal while in the project fold
 </br>
 `pip install flask`</br>
 `pip install flask-cors`</br>
+`pip install joblib`</br>
 `cd server`</br>
 `flask run`</br>
