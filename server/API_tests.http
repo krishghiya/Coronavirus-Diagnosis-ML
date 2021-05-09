@@ -1,0 +1,71 @@
+###
+POST http://coronavirus-diagnosis.us-west-1.elasticbeanstalk.com/data HTTP/1.1
+Content-Type: application/json
+
+{
+    "Age": 20,
+    "Asthma": false,
+    "Breathing difficulty": false,
+    "Cardiovascular": false,
+    "Cough": false,
+    "Diabetes": false,
+    "Diarrhea": false,
+    "Down Syndrome": false,
+    "Fever": false,
+    "Headache": false,
+    "Hematologic (Blood Disease)": false,
+    "Hypertension": false,
+    "Immunosuppression": false,
+    "Kidney disease": false,
+    "Liver disease": false,
+    "Low oxygen levels": false,
+    "Male": false,
+    "Myalgia": false,
+    "Neurological": false,
+    "Obesity": false,
+    "Other diseases": false,
+    "Pneumonia": false,
+    "Pregnant": false,
+    "Race": "Asian",
+    "Respiratory": false,
+    "Sore throat": false,
+    "Throat infection": false,
+    "Tobacco": false,
+    "Vomiting": false
+ }
+###
+POST http://localhost:5000/data HTTP/1.1
+Content-Type: application/json
+
+{
+    "Age": 50,
+    "Asthma": false,
+    "Breathing difficulty": false,
+    "Cardiovascular": false,
+    "Cough": false,
+    "Diabetes": false,
+    "Diarrhea": false,
+    "Down Syndrome": false,
+    "Fever": false,
+    "Headache": false,
+    "Hematologic (Blood Disease)": false,
+    "Hypertension": false,
+    "Immunosuppression": false,
+    "Kidney disease": false,
+    "Liver disease": false,
+    "Low oxygen levels": false,
+    "Male": false,
+    "Myalgia": false,
+    "Neurological": false,
+    "Obesity": false,
+    "Other diseases": false,
+    "Pneumonia": false,
+    "Pregnant": false,
+    "Race": "Asian",
+    "Respiratory": false,
+    "Sore throat": false,
+    "Throat infection": false,
+    "Tobacco": false,
+    "Vomiting": false
+ }
+###
