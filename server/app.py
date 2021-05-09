@@ -2,14 +2,17 @@ from flask import Flask
 from flask_cors import CORS
 from flask import request
 from joblib import load
-import joblib
 import pandas as pd
 import os
 
-app = Flask(__name__)
-cors = CORS(app)
+application = Flask(__name__)
+cors = CORS(application)
 
-@app.route('/data', methods=['POST'])
+@application.route('/', methods=['GET'])
+def welcome():
+    return "Hi! This is the CMPE 195B Server!"
+
+@application.route('/data', methods=['POST'])
 def make_prediction():
     data = request.get_json()
     if not data:
@@ -18,14 +21,13 @@ def make_prediction():
     return calculate_prediction(data)
 
 def calculate_prediction(data):
+    mexico = load(os.path.join(os.path.dirname(__file__), 'mexico_model.joblib'))
+    brazil = load(os.path.join(os.path.dirname(__file__), 'brazil_model.joblib'))
+    israel = load(os.path.join(os.path.dirname(__file__), 'israel_model.joblib'))
 
-    mexico = joblib.load(os.path.join(os.path.dirname(__file__), 'mexico_model.joblib'))
-    brazil = joblib.load(os.path.join(os.path.dirname(__file__), 'brazil_model.joblib'))
-    israel = joblib.load(os.path.join(os.path.dirname(__file__), 'israel_model.joblib'))
-
-    mexico_cols = joblib.load(os.path.join(os.path.dirname(__file__), 'mexico_cols.joblib'))
-    brazil_cols = joblib.load(os.path.join(os.path.dirname(__file__), 'brazil_cols.joblib'))
-    israel_cols = joblib.load(os.path.join(os.path.dirname(__file__), 'israel_cols.joblib'))
+    mexico_cols = load(os.path.join(os.path.dirname(__file__), 'mexico_cols.joblib'))
+    brazil_cols = load(os.path.join(os.path.dirname(__file__), 'brazil_cols.joblib'))
+    israel_cols = load(os.path.join(os.path.dirname(__file__), 'israel_cols.joblib'))
 
     mexico_df = pd.DataFrame.from_dict({k: [v] for k,v in data.items() if k in mexico_cols})
     
@@ -53,7 +55,4 @@ def calculate_prediction(data):
         "prediction": "likely" if score > 0.5 else "unlikely",
         "confidence": round(1-score if score < 0.5 else score, 2) 
     }
-
-if __name__ == '__main__':
-    app.run()
     
