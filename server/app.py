@@ -3,6 +3,8 @@ from flask_cors import CORS
 from flask import request
 from joblib import load
 import pandas as pd
+import sklearn
+from sklearn.ensemble import RandomForestClassifier
 import os
 
 application = Flask(__name__)
