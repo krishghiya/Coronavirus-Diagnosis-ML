@@ -3,18 +3,16 @@ from flask_cors import CORS
 from flask import request
 from joblib import load
 import pandas as pd
-import sklearn
-from sklearn.ensemble import RandomForestClassifier
 import os
 
-application = Flask(__name__)
-cors = CORS(application)
+app = Flask(__name__)
+cors = CORS(app)
 
-@application.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])
 def welcome():
     return "Hi! This is the CMPE 195B Server!"
 
-@application.route('/data', methods=['POST'])
+@app.route('/data', methods=['POST'])
 def make_prediction():
     data = request.get_json()
     if not data:
@@ -57,4 +55,3 @@ def calculate_prediction(data):
         "prediction": "likely" if score > 0.5 else "unlikely",
         "confidence": round(1-score if score < 0.5 else score, 2) 
     }
-    
