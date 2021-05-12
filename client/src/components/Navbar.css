@@ -16,8 +16,7 @@
   background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  height: 80px;
+  align-items: baseline;
 }
 
 .navbar-logo {
