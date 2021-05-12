@@ -21,11 +21,11 @@ function Navbar() {
   window.addEventListener("resize", showButton);
   return (
     <>
-      <nav classname="navbar">
+      <nav className="navbar">
         <div className="navbar-container">
           <Link to="/" className="navbar-logo">
-            <span>Covid-19 Early Assestment &nbsp;&nbsp;</span>
-            <i class="fas fa-shield-virus"></i>
+            <span>Covid-19 Early Assessment &nbsp;&nbsp;</span>
+            <i className="fas fa-shield-virus"></i>
           </Link>
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
@@ -47,7 +47,7 @@ function Navbar() {
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Self Assestment
+                Self Assessment
               </Link>
             </li>
           </ul>

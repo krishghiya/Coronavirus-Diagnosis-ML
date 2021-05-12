@@ -2,15 +2,87 @@ import "./form.css";
 import React, { useState } from "react";
 import cover from "../../assets/cover1.jpg";
 import { Form, Modal } from "react-bootstrap";
-
-export default function () {
+import axios from 'axios';
+export default function Welcome ({ history }) {
   const [age, setAge] = useState();
   const [index, setIndex] = useState(1);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [gender, setGender] = useState("");
   const [smoker, setSmoker] = useState("");
   const [diseases, setDiseases] = useState([]);
   const [symptoms, setSymptoms] = useState([]);
+  const [race, setRace] = useState("");
+
+  const calculateAge = (bDate) => {
+    const now = new Date();
+    const date = new Date(
+      parseInt(bDate.substring(0, 4)),
+      parseInt(bDate.substring(5, 7)),
+      parseInt(bDate.substring(8, 10))
+    );
+    const diff = Math.abs(now - date);
+    const myAge = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+    return myAge;
+  };
+
+  const handleSubmit = () => {
+    const data = {
+      "Age": calculateAge(age.target.value),
+      "Asthma": diseases.includes("asthma"),
+      "Breathing difficulty": symptoms.includes("breathing_difficulty"),
+      "Cardiovascular": diseases.includes("cardiovascular"),
+      "Cough": symptoms.includes("cough"),
+      "Diabetes": diseases.includes("diabetes"),
+      "Diarrhea": symptoms.includes("Diarrhea"),
+      "Down Syndrome": symptoms.includes("Down Syndrome"),
+      "Fever": symptoms.includes("fever"),
+      "Headache": symptoms.includes("headache"),
+      "Hematologic (Blood Disease)": symptoms.includes("Blood disease"),
+      "Hypertension": diseases.includes("hypertension"),
+      "Immunosuppression": diseases.includes("immunosuppression"),
+      "Kidney disease": diseases.includes("kidney_failue"),
+      "Liver disease": symptoms.includes("Liver disease"),
+      "Low oxygen levels": symptoms.includes("Low oxygen levels"),
+      "Male": gender === "Male",
+      "Myalgia": symptoms.includes("myalgia"),
+      "Neurological": symptoms.includes("neurological"),
+      "Obesity": diseases.includes("obesity"),
+      "Other diseases": symptoms.includes("Other diseases"),
+      "Pneumonia": symptoms.includes("pneumonia"),
+      "Pregnant": symptoms.includes("Pregnant"),
+      "Race": race /*- One of "White", "Black", "Asian", "Hispanic/Latino" */,
+      "Respiratory": symptoms.includes("Respiratory"),
+      "Sore throat": symptoms.includes("sore_throat"),
+      "Throat infection": symptoms.includes("Throat infection"),
+      "Tobacco": smoker === "Yes",
+      "Vomiting": symptoms.includes("vomiting"),
+    };
+
+    setAge("");
+    setIndex(1);
+    setGender("");
+    setSmoker("");
+    setOpen(false);
+    setSymptoms([]);
+    setDiseases([]);
+
+    try {
+      axios.post('http://localhost:5000/data', data, 
+      {
+        headers: {'Content-Type': 'application/json',},
+      }).then(res => {
+        var arr = []
+        for (var key in res['data']) {
+          arr.push(res['data'][key])  
+        }
+        history.push("/result", arr);
+      })
+    }catch (error) {
+      console.log(error);  
+    }
+
+    history.push('/loading')
+  };
 
   const onChangeSymptoms = (txt) => {
     let check = symptoms.includes(txt);
@@ -86,6 +158,8 @@ export default function () {
                   <span className="modalFooterspan">3</span>
                   <span className="modalFooterspan">4</span>
                   <span className="modalFooterspan">5</span>
+                  <span className="modalFooterspan">6</span>
+                  <span className="modalFooterspan">7</span>
                 </div>
               </div>
             )}
@@ -120,6 +194,8 @@ export default function () {
                   <span className="modalFooterspan">3</span>
                   <span className="modalFooterspan">4</span>
                   <span className="modalFooterspan">5</span>
+                  <span className="modalFooterspan">6</span>
+                  <span className="modalFooterspan">7</span>
                 </div>
               </div>
             )}
@@ -173,6 +249,8 @@ export default function () {
                   <span className="modalFooterspanActive">3</span>
                   <span className="modalFooterspan">4</span>
                   <span className="modalFooterspan">5</span>
+                  <span className="modalFooterspan">6</span>
+                  <span className="modalFooterspan">7</span>
                 </div>
               </div>
             )}
@@ -269,14 +347,14 @@ export default function () {
                   </button>
                   <button
                     className="modalDivButton"
-                    onClick={() => onChangeSymptoms("fatigue")}
+                    onClick={() => onChangeSymptoms("neurological")}
                   >
                     <Form.Check
                       type="checkbox"
-                      checked={symptoms.includes("fatigue") ? true : false}
-                      onClick={() => onChangeSymptoms("fatigue")}
+                      checked={symptoms.includes("neurological") ? true : false}
+                      onClick={() => onChangeSymptoms("neurological")}
                     />
-                    Fatigue
+                    Neurological Symptoms
                   </button>
                 </div>
                 <div className="modalFootRow">
@@ -302,10 +380,255 @@ export default function () {
                   <span className="modalFooterspan">3</span>
                   <span className="modalFooterspanActive">4</span>
                   <span className="modalFooterspan">5</span>
+                  <span className="modalFooterspan">6</span>
+                  <span className="modalFooterspan">7</span>
                 </div>
               </div>
             )}
+
             {index === 5 && (
+              <div className="modaldiv">
+                <h4>
+                  Do you have any of these preconditions:(Select all that apply)
+                </h4>
+                <div className="modaldivRow">
+                  <button
+                    className="modalDivButton"
+                    onClick={() => onChangeSymptoms("Diarrhea")}
+                  >
+                    <Form.Check
+                      type="checkbox"
+                      checked={symptoms.includes("Diarrhea") ? true : false}
+                      onClick={() => onChangeSymptoms("Diarrhea")}
+                    />
+                    Diarrhea
+                  </button>
+                  <button
+                    className="modalDivButton"
+                    onClick={() => onChangeSymptoms("Down Syndrome")}
+                  >
+                    <Form.Check
+                      type="checkbox"
+                      checked={symptoms.includes("Down Syndrome") ? true : false}
+                      onClick={() => onChangeSymptoms("Down Syndrome")}
+                    />
+                    Down Syndrome
+                  </button>
+                </div>
+                <div className="modaldivRow">
+                  <button
+                    className="modalDivButton"
+                    onClick={() => onChangeSymptoms("Blood disease")}
+                  >
+                    <Form.Check
+                      type="checkbox"
+                      checked={symptoms.includes("Blood disease") ? true : false}
+                      onClick={() => onChangeSymptoms("Blood disease")}
+                    />
+                    Blood disease
+                  </button>
+                  <button
+                    className="modalDivButton"
+                    onClick={() => onChangeSymptoms("Liver disease")}
+                  >
+                    <Form.Check
+                      type="checkbox"
+                      checked={symptoms.includes("Liver disease") ? true : false}
+                      onClick={() => onChangeSymptoms("Liver disease")}
+                    />
+                    Liver disease
+                  </button>
+                </div>
+                <div className="modaldivRow">
+                  <button
+                    className="modalDivButton"
+                    onClick={() => onChangeSymptoms("Low oxygen levels")}
+                  >
+                    <Form.Check
+                      type="checkbox"
+                      checked={
+                        symptoms.includes("Low oxygen levels") ? true : false
+                      }
+                      onClick={() => onChangeSymptoms("Low oxygen levels")}
+                    />
+                    Low oxygen levels
+                  </button>
+                  <button
+                    className="modalDivButton"
+                    onClick={() => onChangeSymptoms("Pregnant")}
+                  >
+                    <Form.Check
+                      type="checkbox"
+                      checked={symptoms.includes("Pregnant") ? true : false}
+                      onClick={() => onChangeSymptoms("Pregnant")}
+                    />
+                    Pregnant
+                  </button>
+                </div>
+                <div className="modaldivRow">
+                  <button
+                    className="modalDivButton"
+                    onClick={() => onChangeSymptoms("Respiratory")}
+                  >
+                    <Form.Check
+                      type="checkbox"
+                      checked={symptoms.includes("Respiratory") ? true : false}
+                      onClick={() => onChangeSymptoms("Respiratory")}
+                    />
+                    Respiratory disease
+                  </button>
+                  <button
+                    className="modalDivButton"
+                    onClick={() => onChangeSymptoms("Vomiting")}
+                  >
+                    <Form.Check
+                      type="checkbox"
+                      checked={symptoms.includes("Vomiting") ? true : false}
+                      onClick={() => onChangeSymptoms("Vomiting")}
+                    />
+                    Vomiting
+                  </button>  
+                </div>
+                <div className="modaldivRow">
+                  <button
+                    className="modalDivButton"
+                    onClick={() => onChangeSymptoms("Throat infection")}
+                  >
+                    <Form.Check
+                      type="checkbox"
+                      checked={symptoms.includes("Throat infection") ? true : false}
+                      onClick={() => onChangeSymptoms("Throat infection")}
+                    />
+                    Throat infection
+                  </button>
+                  <button
+                    className="modalDivButton"
+                    onClick={() => onChangeSymptoms("Other diseases")}
+                  >
+                    <Form.Check
+                      type="checkbox"
+                      checked={symptoms.includes("Other diseases") ? true : false}
+                      onClick={() => onChangeSymptoms("Other diseases")}
+                    />
+                    Other diseases
+                  </button>
+                </div>
+                <div className="modalFootRow">
+                  <button
+                    className="footerButton"
+                    onClick={() => setIndex(index - 1)}
+                  >
+                    Back
+                  </button>
+                  <button
+                    className="footerButton"
+                    onClick={() => {
+                      if (symptoms) setIndex(index + 1);
+                      else alert("Please Select Your Symptoms");
+                    }}
+                  >
+                    Next
+                  </button>
+                </div>
+                <div className="modalFooterRow">
+                  <span className="modalFooterspan">1</span>
+                  <span className="modalFooterspan">2</span>
+                  <span className="modalFooterspan">3</span>
+                  <span className="modalFooterspan">4</span>
+                  <span className="modalFooterspanActive">5</span>
+                  <span className="modalFooterspan">6</span>
+                  <span className="modalFooterspan">7</span>
+                </div>
+              </div>
+            )}        
+
+            {index === 6 && (
+              <div className="modaldiv">
+                <h4>
+                  Please select your race.
+                </h4>
+                <div className="modaldivRow">
+                  <button
+                    className="modalDivButton"
+                    onClick={() => setRace("White")}
+                  >
+                    <Form.Check
+                      onClick={() => setRace("White")}
+                      checked={race === "White" ? true : false}
+                      type="checkbox"
+                    />
+                    White
+                  </button>
+                  <button
+                    className="modalDivButton"
+                    onClick={() => setRace("Black")}
+                  >
+                    <Form.Check
+                      onClick={() => setRace("Black")}
+                      checked={race === "Black" ? true : false}
+                      type="checkbox"
+                    />
+                    Black
+                  </button>
+                </div>
+                <div className="modaldivRow">
+                  <button
+                    className="modalDivButton"
+                    onClick={() => setRace("Asian")}
+                  >
+                    <Form.Check
+                      onClick={() => setRace("Asian")}
+                      checked={race === "Asian" ? true : false}
+                      type="checkbox"
+                    />
+                    Asian
+                  </button>
+                  <button
+                    className="modalDivButton"
+                    onClick={() => setRace("Hispanic/Latino")}
+                  >
+                    <Form.Check
+                      onClick={() => setRace("Hispanic/Latino")}
+                      checked={race === "Hispanic/Latino" ? true : false}
+                      type="checkbox"
+                    />
+                    Hispanic/Latino
+                  </button>
+                </div>
+                
+                <div className="modalFootRow">
+                  <button
+                    className="footerButton"
+                    onClick={() => setIndex(index - 1)}
+                  >
+                    Back
+                  </button>
+                  <button
+                    className="footerButton"
+                    onClick={() => {
+                      if (race) setIndex(index + 1);
+                      else alert("Please Select A Race");
+                    }}
+                  >
+                    Next
+                  </button>
+                </div>
+                <div className="modalFooterRow">
+                  <span className="modalFooterspan">1</span>
+                  <span className="modalFooterspan">2</span>
+                  <span className="modalFooterspan">3</span>
+                  <span className="modalFooterspan">4</span>
+                  <span className="modalFooterspan">5</span>
+                  <span className="modalFooterspanActive">6</span>
+                  <span className="modalFooterspan">7</span>
+                </div>
+              </div>
+            )}        
+
+
+
+
+            {index === 7 && (
               <div className="modaldiv">
                 <h4>
                   Have you ever had or been diagnosed to have:(Select all that
@@ -347,7 +670,7 @@ export default function () {
                         diseases.includes("kidney_failue") ? true : false
                       }
                     />
-                    Kidney Failue
+                    Kidney Failure
                   </button>
                   <button
                     className="modalDivButton"
@@ -401,25 +724,7 @@ export default function () {
                     />
                     Immunosuppression
                   </button>
-                  <button
-                    className="modalDivButton"
-                    onClick={() =>
-                      onChangeDiseases("chronic_obstructive_pulmonary")
-                    }
-                  >
-                    <Form.Check
-                      type="checkbox"
-                      onClick={() =>
-                        onChangeDiseases("chronic_obstructive_pulmonary")
-                      }
-                      checked={
-                        diseases.includes("chronic_obstructive_pulmonary")
-                          ? true
-                          : false
-                      }
-                    />
-                    Chronic_obstructive_pulmonary
-                  </button>
+
                 </div>
                 <div className="modalFootRow">
                   <button
@@ -428,18 +733,7 @@ export default function () {
                   >
                     Back
                   </button>
-                  <button
-                    className="footerButton"
-                    onClick={() => {
-                      setAge("")
-                      setIndex(1);
-                      setGender("")
-                      setSmoker("")
-                      setOpen(false);
-                      setSymptoms([])
-                      setDiseases([])
-                    }}
-                  >
+                  <button className="footerButton" onClick={handleSubmit}>
                     Finish
                   </button>
                 </div>
@@ -448,7 +742,9 @@ export default function () {
                   <span className="modalFooterspan">2</span>
                   <span className="modalFooterspan">3</span>
                   <span className="modalFooterspan">4</span>
-                  <span className="modalFooterspanActive">5</span>
+                  <span className="modalFooterspan">5</span>
+                  <span className="modalFooterspan">6</span>
+                  <span className="modalFooterspanActive">7</span>
                 </div>
               </div>
             )}

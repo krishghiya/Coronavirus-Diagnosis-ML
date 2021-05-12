@@ -43,15 +43,17 @@ def calculate_prediction(data):
     brazil_pred = brazil.predict_proba(brazil_df)[0]
     israel_pred = israel.predict_proba(israel_df)[0]
 
-    mexico_class, mexico_score = max(enumerate(mexico_pred), key=lambda t: t[1])
-    brazil_class, brazil_score = max(enumerate(brazil_pred), key=lambda t: t[1])
-    israel_class, israel_score = max(enumerate(israel_pred), key=lambda t: t[1])
+    mexico_res = max(enumerate(mexico_pred), key=lambda t: t[1])
+    brazil_res = max(enumerate(brazil_pred), key=lambda t: t[1])
+    israel_res = max(enumerate(israel_pred), key=lambda t: t[1])
 
-    score = ((mexico_class * mexico_score) + \
-            (brazil_class * brazil_score) + \
-            (israel_class * israel_score)) / 3
+    print(mexico_res)
+    print(brazil_res)
+    print(israel_res)
+
+    score = max((mexico_res, brazil_res, israel_res), key=lambda t: t[1])
 
     return {
-        "prediction": "likely" if score > 0.5 else "unlikely",
-        "confidence": round(1-score if score < 0.5 else score, 2) 
+        "prediction": "Likely" if score[0] else "Unlikely",
+        "confidence": round(score[1], 2) 
     }

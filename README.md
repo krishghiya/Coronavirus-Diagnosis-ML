@@ -1,6 +1,8 @@
 # Coronavirus-Diagnosis-ML
 CMPE 195A Senior Project that aims to diagnose COVID-19 using Machine Learning methods
 
+https://github.com/krishghiya/Coronavirus-Diagnosis-ML/ 
+
 To run website enter the following commands in terminal while in the project folder. npm must be installed</br>
 </br>
 `cd client`</br>
@@ -12,5 +14,6 @@ To run server enter the following commands in terminal while in the project fold
 `pip install flask`</br>
 `pip install flask-cors`</br>
 `pip install joblib`</br>
+`pip install pandas`</br>
 `cd server`</br>
 `flask run`</br>
