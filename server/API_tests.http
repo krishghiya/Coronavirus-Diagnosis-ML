@@ -5,7 +5,7 @@ POST http://34.120.183.50/data HTTP/1.1
 Content-Type: application/json
 
 {
-    "Age": 20,
+    "Age": 10,
     "Asthma": true,
     "Breathing difficulty": true,
     "Cardiovascular": true,
@@ -27,7 +27,7 @@ Content-Type: application/json
     "Obesity": true,
     "Other diseases": true,
     "Pneumonia": true,
-    "Pregnant": false,
+    "Pregnant": true,
     "Race": "Black",
     "Respiratory": true,
     "Sore throat": true,

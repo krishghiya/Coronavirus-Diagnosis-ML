@@ -67,7 +67,7 @@ export default function Welcome ({ history }) {
     setDiseases([]);
 
     try {
-      axios.post('http://localhost:5000/data', data, 
+      axios.post('http://34.120.183.50/data', data, 
       {
         headers: {'Content-Type': 'application/json',},
       }).then(res => {
