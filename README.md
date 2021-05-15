@@ -4,6 +4,7 @@ CMPE 195A Senior Project that aims to diagnose COVID-19 using Machine Learning m
 https://github.com/krishghiya/Coronavirus-Diagnosis-ML/ <br>
 
 To view the final version, please visit http://coronavirus-diagnosis.s3-website-us-west-1.amazonaws.com/ <br>
+>The backend has now been taken down after the end of the expo <br>
 
 Otherwise to run locally follow the following instructions:<br> 
 
