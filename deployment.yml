@@ -21,4 +21,9 @@ spec:
         name: model
         ports:
         - containerPort: 5000
+        resources:
+          limits:
+          memory: "2000Mi"
+        requests:
+          memory: "2000Mi"
             
